@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tunisia in totality — July–August 2027</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+:root {
+  --night: #0a0d16;
+  --night-2: #11172a;
+  --ink: #171c26;
+  --paper: #f7f5ef;
+  --paper-2: #efece3;
+  --cobalt: #2456a4;
+  --cobalt-deep: #17376e;
+  --gold: #c79a3b;
+  --muted: #5a6270;
+  --line: #d8d3c6;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.55;
+}
+.serif {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+}
+h1, h2, h3, h4 {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  line-height: 1.2;
+  margin: 0 0 .5rem;
+  font-weight: 600;
+}
+p {
+  margin: 0 0 1rem;
+}
+a {
+  color: var(--cobalt);
+}
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+.eyebrow {
+  font-size: .75rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: .75rem;
+}
+section {
+  padding: 3.5rem 0;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background: radial-gradient(1200px 700px at 50% 115%, #1b2a52 0%, var(--night-2) 45%, var(--night) 100%);
+  color: #eef0f6;
+  text-align: center;
+  padding: 4.5rem 0 4rem;
+  overflow: hidden;
+}
+.eclipse {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 2.25rem;
+}
+.eclipse .sun {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #f5e9c8;
+  box-shadow: 0 0 45px 16px rgba(245, 233, 200, .55), 0 0 140px 60px rgba(245, 233, 200, .18);
+}
+.eclipse .moon {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--night);
+  transform: translateX(-115%);
+  animation: pass 14s ease-in-out infinite;
+}
+@keyframes pass {
+  0%   { transform: translateX(-115%); }
+  42%  { transform: translateX(0); }
+  58%  { transform: translateX(0); }
+  100% { transform: translateX(115%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eclipse .moon { animation: none; transform: translateX(0); }
+}
+.hero h1 {
+  font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: .01em;
+  margin-bottom: .75rem;
+}
+.hero .sub {
+  color: #b9c1d4;
+  max-width: 620px;
+  margin: 0 auto 1.75rem;
+  font-size: 1.05rem;
+}
+.hero .dates {
+  display: inline-block;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 999px;
+  padding: .5rem 1.25rem;
+  font-size: .85rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #dfe4ef;
+}
+
+/* ---------- Stat band ---------- */
+.stats {
+  background: var(--night-2);
+  color: #e8ebf3;
+  padding: 2rem 0;
+}
+.stats .wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  text-align: center;
+}
+.stat b {
+  display: block;
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  font-size: 1.7rem;
+  color: #f5e9c8;
+  font-weight: 600;
+}
+.stat span {
+  font-size: .78rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #9aa4bd;
+}
+@media (max-width: 640px) {
+  .stats .wrap { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- Intro / history ---------- */
+.lede {
+  font-size: 1.15rem;
+  max-width: 720px;
+}
+.civs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-top: 2rem;
+}
+.civ {
+  padding: 1.25rem 1rem 1.4rem;
+  border-left: 1px solid var(--line);
+}
+.civ:first-child { border-left: none; }
+.civ .era {
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+.civ h4 {
+  font-size: 1.05rem;
+  margin: .35rem 0 .35rem;
+}
+.civ p {
+  font-size: .85rem;
+  color: var(--muted);
+  margin: 0;
+}
+@media (max-width: 760px) {
+  .civs { grid-template-columns: 1fr; }
+  .civ { border-left: none; border-top: 1px solid var(--line); }
+  .civ:first-child { border-top: none; }
+}
+
+/* ---------- Journey ---------- */
+.journey {
+  background: var(--paper-2);
+}
+.stop {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin-bottom: 1.1rem;
+  overflow: hidden;
+}
+.stop-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.15rem 1.4rem 0;
+  flex-wrap: wrap;
+}
+.stop-head .when {
+  font-size: .75rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--cobalt);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.stop-head h3 {
+  font-size: 1.35rem;
+  margin: 0;
+}
+.stop-body {
+  padding: .6rem 1.4rem 1.25rem;
+}
+.stop-body > p {
+  color: #333a46;
+}
+.badge {
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: .68rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: .2rem .5rem;
+  vertical-align: middle;
+}
+.badge.blue { background: var(--cobalt); }
+details.more {
+  border-top: 1px dashed var(--line);
+  margin-top: .5rem;
+}
+details.more summary {
+  cursor: pointer;
+  list-style: none;
+  padding: .8rem 0 .6rem;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--cobalt);
+  letter-spacing: .04em;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+details.more summary::-webkit-details-marker { display: none; }
+details.more summary::before {
+  content: "+";
+  display: inline-block;
+  width: 1.2rem;
+  color: var(--gold);
+  font-size: 1.05rem;
+}
+details.more[open] summary::before { content: "–"; }
+details.more summary:hover { color: var(--cobalt-deep); }
+details.more summary:focus-visible {
+  outline: 2px solid var(--cobalt);
+  outline-offset: 2px;
+}
+details.more ul {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+}
+details.more li {
+  margin-bottom: .55rem;
+  font-size: .95rem;
+}
+.note {
+  font-size: .85rem;
+  color: var(--muted);
+  border-left: 3px solid var(--gold);
+  padding: .35rem 0 .35rem .9rem;
+  margin: .75rem 0;
+}
+.photo {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+  margin: .9rem 0 .3rem;
+  background: var(--paper-2);
+}
+.photo-cap {
+  font-size: .76rem;
+  color: var(--muted);
+  margin: 0 0 .9rem;
+}
+.photo-cap a { color: var(--muted); }
+.photo-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  margin: .9rem 0 .3rem;
+}
+.photo-row .photo { margin: 0; aspect-ratio: 4 / 3; }
+@media (max-width: 560px) {
+  .photo-row { grid-template-columns: 1fr; }
+}
+
+/* ---------- Options ---------- */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+.option {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 1.25rem 1.25rem 1rem;
+  position: relative;
+  cursor: pointer;
+  transition: border-color .15s, box-shadow .15s;
+}
+.option:hover { border-color: var(--cobalt); }
+.option.selected {
+  border-color: var(--cobalt);
+  box-shadow: 0 0 0 2px rgba(36, 86, 164, .25);
+}
+.option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.option .opt-label {
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+.option h4 {
+  font-size: 1.15rem;
+  margin: .3rem 0 .4rem;
+}
+.option .price {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--cobalt-deep);
+  margin-bottom: .5rem;
+}
+.option p {
+  font-size: .88rem;
+  color: var(--muted);
+  margin-bottom: .5rem;
+}
+.option .pick {
+  display: inline-block;
+  margin-top: .25rem;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--cobalt);
+}
+@media (max-width: 760px) {
+  .options-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Budget ---------- */
+table.budget {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.25rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: .95rem;
+}
+table.budget th, table.budget td {
+  text-align: left;
+  padding: .8rem 1.1rem;
+  border-top: 1px solid var(--line);
+}
+table.budget thead th {
+  border-top: none;
+  background: var(--paper-2);
+  font-size: .75rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+table.budget td:last-child, table.budget th:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+table.budget tr.total td {
+  font-weight: 700;
+  font-size: 1.05rem;
+  background: var(--paper-2);
+}
+#legRow td:first-child { color: var(--cobalt-deep); font-weight: 600; }
+.budget-note {
+  font-size: .83rem;
+  color: var(--muted);
+  margin-top: .8rem;
+}
+
+/* ---------- Timeline ---------- */
+.timeline {
+  border-left: 2px solid var(--line);
+  margin: 1.5rem 0 0 .4rem;
+  padding-left: 1.6rem;
+}
+.tl-item {
+  position: relative;
+  padding-bottom: 1.6rem;
+}
+.tl-item::before {
+  content: "";
+  position: absolute;
+  left: -2.1rem;
+  top: .35rem;
+  width: .8rem;
+  height: .8rem;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--paper);
+}
+.tl-item.now::before { background: var(--cobalt); }
+.tl-item h4 { font-size: 1.05rem; margin-bottom: .25rem; }
+.tl-item p { font-size: .92rem; color: var(--muted); margin: 0; }
+
+/* ---------- Practical ---------- */
+.practical details {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: .7rem;
+}
+.practical summary {
+  cursor: pointer;
+  padding: .95rem 1.2rem;
+  font-weight: 600;
+  list-style: none;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.practical summary::-webkit-details-marker { display: none; }
+.practical summary::after {
+  content: "+";
+  color: var(--gold);
+  font-size: 1.2rem;
+}
+.practical details[open] summary::after { content: "–"; }
+.practical summary:hover { color: var(--cobalt-deep); }
+.practical summary:focus-visible {
+  outline: 2px solid var(--cobalt);
+  outline-offset: 2px;
+}
+.practical .body {
+  padding: 0 1.2rem 1rem;
+  font-size: .93rem;
+  color: #333a46;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background: var(--night);
+  color: #9aa4bd;
+  text-align: center;
+  padding: 2.5rem 1.25rem;
+  font-size: .85rem;
+}
+footer b { color: #f5e9c8; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eclipse" aria-hidden="true">
+      <div class="sun"></div>
+      <div class="moon"></div>
+    </div>
+    <h1>Tunisia in totality</h1>
+    <p class="sub serif">Twelve days across three thousand years of history, ending beneath the longest total solar eclipse Europe and North Africa will see this century — timed to a 30th birthday.</p>
+    <span class="dates">Sat 24 July – Wed 4 August 2027 · Two travellers</span>
+  </div>
+</header>
+
+<!-- ================= ECLIPSE STATS ================= -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><b>5m 41s</b><span>Totality in Sfax</span></div>
+    <div class="stat"><b>~10:08</b><span>Totality begins, local</span></div>
+    <div class="stat"><b>56°</b><span>Sun's altitude</span></div>
+    <div class="stat"><b>88%</b><span>Historic clear-sky rate</span></div>
+  </div>
+</div>
+
+<!-- ================= WHY ================= -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The occasion</div>
+    <h2>A birthday, then the sky goes dark</h2>
+    <p class="lede">On Monday 2 August 2027, the Moon's shadow crosses the Tunisian coast. Sfax sits almost exactly on the centreline: nearly six minutes of darkness at mid-morning, the Sun high over the Mediterranean, in the region with the most reliable clear skies anywhere along the eclipse's path. Three days earlier, on 30 July, there is a 30th birthday to celebrate — so the journey is built to do both properly: the classical north first, a slow run south through holy cities and Roman arenas, the birthday by the sea in Sousse, and eclipse day already settled in Sfax with nowhere to rush to.</p>
+    <div class="eyebrow" style="margin-top:2.5rem">The setting</div>
+    <h2>Five civilisations deep</h2>
+    <p>Tunisia is not one ancient country but several stacked on top of each other. This route reads them in order:</p>
+    <div class="civs">
+      <div class="civ">
+        <div class="era">814 BC</div>
+        <h4>Carthage</h4>
+        <p>Phoenician traders found the city that will rival Rome itself — and lose, twice, before rising again.</p>
+      </div>
+      <div class="civ">
+        <div class="era">146 BC</div>
+        <h4>Rome</h4>
+        <p>Africa Proconsularis becomes the empire's breadbasket, rich enough to build the third-largest amphitheatre on Earth at El Jem.</p>
+      </div>
+      <div class="civ">
+        <div class="era">670 AD</div>
+        <h4>Islam</h4>
+        <p>Kairouan is founded — the fourth-holiest city of Islam, its Great Mosque home to the world's oldest surviving minaret.</p>
+      </div>
+      <div class="civ">
+        <div class="era">1574</div>
+        <h4>Ottomans &amp; Beys</h4>
+        <p>Corsair wealth and Andalusian refugees shape the medinas, palaces and tiled courtyards of Tunis and Sfax.</p>
+      </div>
+      <div class="civ">
+        <div class="era">1956</div>
+        <h4>Modern Tunisia</h4>
+        <p>Independence, and later the birthplace of the Arab Spring — a young republic living inside very old walls.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= JOURNEY ================= -->
+<section class="journey">
+  <div class="wrap">
+    <div class="eyebrow">The journey</div>
+    <h2>Route: Tunis → Sousse → El Jem → Sfax → Paris</h2>
+    <p style="max-width:720px">North to south down the eclipse's own path, by rail, road and ferry — finishing with a short flight to Paris the morning after totality, and Eurostar home.</p>
+
+    <!-- Tunis -->
+    <div class="stop">
+      <div class="stop-head">
+        <span class="when">Days 1–4 · Sat 24 – Tue 27 Jul</span>
+        <h3>Tunis, Carthage &amp; Sidi Bou Saïd</h3>
+      </div>
+      <div class="stop-body">
+        <p>The capital and its coast: the world's finest Roman mosaics, a living medieval medina, the ruins of Rome's greatest rival, and sunset from a blue-and-white clifftop village.</p>
+        <img class="photo" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sidi_Bou_Said_09.jpg" alt="Café des Nattes terrace under palm trees, Sidi Bou Saïd" loading="lazy">
+        <p class="photo-cap">Café des Nattes, Sidi Bou Saïd. Photo: Wikimedia Commons, CC BY-SA 4.0.</p>
+        <details class="more">
+          <summary>The detail</summary>
+          <ul>
+            <li><b>Bardo Museum</b> — the world's largest collection of Roman mosaics, housed in a beylical palace. The ideal first stop: it lays out the whole Punic–Roman–Islamic story before you meet the sites themselves.</li>
+            <li><b>The medina with <a href="https://www.mdinti.org/#activities" target="_blank" rel="noopener">Mdinti</a></b> — themed walks run by a cooperative of the medina's own craftspeople, restaurateurs and booksellers rather than a tour company. Finish in the courtyard of <b>Zitouna Mosque</b> (open to visitors mornings) and on the rooftop of <b>Café Panorama</b>, reached through a carpet shop, for a wraparound view over the old city. Agree drink prices before ordering.</li>
+            <li><b>Carthage, guided</b> — Byrsa Hill, the Punic ports and the Antonine Baths, with a licensed guide to reassemble a city that was twice erased. Go early; done by midday. Entry to the main sites runs about 12 dinar, all included on one ticket.</li>
+            <li><b>Sidi Bou Saïd</b> — the cobalt-shuttered village on the cliff above the bay. Time it for golden hour.</li>
+            <li><b>Dar El Jeld</b> — a splurge dinner in a restored medina mansion with rooftop dining; treat it as the birthday-week dinner.</li>
+            <li><b>One open day</b> — either a hands-on Tunisian cooking class with a market visit (vegetarian-friendly, English-speaking), or a deliberately empty day at La Marsa's seafront.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+
+    <!-- The choice -->
+    <div class="stop" id="choice">
+      <div class="stop-head">
+        <span class="when">Days 4–6 · Tue 27 – Thu 29 Jul</span>
+        <h3>South to Sousse — choose your route</h3>
+        <span class="badge">Decision</span>
+      </div>
+      <div class="stop-body">
+        <p>Every version passes through <b>Kairouan</b>, the holy city, for the Great Mosque at its cool, quiet morning best. The question is what else this leg carries — and it's the one choice that shapes the trip's cost, pace and character. Select an option to see how it changes the budget below.</p>
+        <div class="options-grid" role="radiogroup" aria-label="Route options for the Tunis to Sousse leg">
+          <label class="option selected" data-cost="60" data-costlabel="£60–100">
+            <input type="radio" name="leg" value="public" checked>
+            <span class="opt-label">Option A</span>
+            <h4>Rail &amp; road</h4>
+            <div class="price">≈ £60–100 for the leg</div>
+            <p>Bus to Kairouan, on to Sousse. Simple, cheap, nothing to book ahead. The fastest version — buys an extra day for Tunis or Sousse.</p>
+            <p><b>Trade:</b> skips the Roman northwest entirely.</p>
+            <span class="pick">Select</span>
+          </label>
+          <label class="option" data-cost="300" data-costlabel="£250–350">
+            <input type="radio" name="leg" value="selfdrive">
+            <span class="opt-label">Option B</span>
+            <h4>Self-drive</h4>
+            <div class="price">≈ £250–350 for the leg</div>
+            <p>Hire car Tunis → Sousse, unlocking the northwest: <b>Bulla Regia</b>'s underground Roman villas, <b>Dougga</b> at dawn, or an <b>Ain Draham</b> forest hike at a cool 26°C.</p>
+            <p><b>Trade:</b> driving on the right on unfamiliar roads; a passport checkpoint near Bulla Regia; zero-alcohol limit.</p>
+            <span class="pick">Select</span>
+          </label>
+          <label class="option" data-cost="400" data-costlabel="£300–500">
+            <input type="radio" name="leg" value="driver">
+            <span class="opt-label">Option C</span>
+            <h4>Private driver-guide</h4>
+            <div class="price">≈ £300–500 for the leg</div>
+            <p>Same sites as self-drive, someone else drives — with a real guide at the ruins. Bespoke two-day routes via <b>Didon Tours</b> or <b>Simba Fun Travel</b>; ready-made day tours also exist and can often be customised — see below.</p>
+            <p><b>Trade:</b> the priciest version — but the most restful and the best taught.</p>
+            <span class="pick">Select</span>
+          </label>
+        </div>
+        <img class="photo" src="https://www.kathmanduandbeyond.com/wp-content/uploads/2019/04/The-Capitol-Dougga-Tunisia-7.jpg" alt="The Capitol at Dougga, Tunisia" loading="lazy">
+        <p class="photo-cap">The Capitol at Dougga — North Africa's best-preserved Roman town. Photo: Kathmandu &amp; Beyond.</p>
+        <details class="more">
+          <summary>What the northwest options actually are</summary>
+          <ul>
+            <li><b>Bulla Regia</b> — Roman townhouses built <i>underground</i> to escape the summer heat, their mosaics still in place two storeys down. Unique in the Roman world. Worth a guide at the entrance.</li>
+            <li><b>Dougga</b> — the best-preserved Roman town in North Africa, on a hilltop of olive groves. Its magic hour is dawn, before the heat and the coaches — which requires overnighting nearby, not just passing through. Entry is a modest 8 dinar.</li>
+            <li><b>Ain Draham</b> — a mountain town in cork-oak forest at 900m, around 26°C when the coast is past 30°C. The trip's one genuinely cool walk.</li>
+            <li><b>Makthar</b> — a quiet, little-visited Roman site "surrounded by nature"; features on some ready-made tours as an alternative to the above.</li>
+          </ul>
+          <div class="note">These can't all fit in one leg — a realistic two-day route carries two of them, at most. Dawn at Dougga and Bulla Regia pair well; Ain Draham and Bulla Regia pair well; all three is a squeeze.</div>
+        </details>
+        <details class="more">
+          <summary>Ready-made tours worth looking at for Option C</summary>
+          <ul>
+            <li><a href="https://www.getyourguide.com/kairouan-l2211/kairouan-makthar-dougga-12-hour-roman-islamic-tour-t1183344" target="_blank" rel="noopener"><b>Kairouan, Makthar &amp; Dougga: 12-Hour Roman &amp; Islamic Tour</b></a> — private, door-to-door, custom itinerary on request. Doesn't include Bulla Regia, and runs Dougga last (afternoon) rather than at dawn as listed — worth asking to reorder.</li>
+            <li><a href="https://www.getyourguide.com/kairouan-l2211/3-day-excursions-kairouan-el-jem-tunis-carthage-dougga-t1332188/" target="_blank" rel="noopener"><b>3-Day Excursions: Kairouan, El Jem, Tunis, Carthage &amp; Dougga</b></a> — a bundled package of separate day trips based from Tunis, rather than a one-way journey to Sousse. Worth a look if the goal is coverage rather than forward momentum down the coast.</li>
+          </ul>
+          <div class="note">Neither is an exact fit as listed — both are starting points to adapt or use for comparison against a bespoke quote from Didon or Simba.</div>
+        </details>
+      </div>
+    </div>
+
+    <!-- Sousse -->
+    <div class="stop">
+      <div class="stop-head">
+        <span class="when">Days 6–8 · Thu 29 – Sat 31 Jul</span>
+        <h3>Sousse — the birthday</h3>
+        <span class="badge blue">30 July</span>
+      </div>
+      <div class="stop-body">
+        <p>Two nights in a proper sea-facing hotel, with <b>Friday 30 July kept completely free of travel</b>: a slow birthday of medina, museum, pool and a long dinner.</p>
+        <img class="photo" src="https://www.kathmanduandbeyond.com/wp-content/uploads/2020/04/Ribat-Medina-Sousse-Tunisia.jpg" alt="The Ribat on the edge of Sousse medina" loading="lazy">
+        <p class="photo-cap">The Ribat, Sousse medina. Photo: Kathmandu &amp; Beyond.</p>
+        <details class="more">
+          <summary>The detail</summary>
+          <ul>
+            <li><b>Sousse Archaeological Museum</b> — the world's second-largest mosaic collection after the Bardo, but intimate: everything here was dug from the city beneath your feet, displayed inside an 11th-century Kasbah with sea views from the ramparts.</li>
+            <li><b>The Ribat and medina</b> — a UNESCO-listed fortress-monastery and one of Tunisia's liveliest old towns. The medina itself is free to wander; the Ribat is around 8 dinar, the Great Mosque 5 dinar.</li>
+            <li><b>Optional: Hergla</b> — a small whitewashed fishing village on low cliffs just up the coast; quiet, pretty and refreshingly undeveloped. An easy, unhurried half-day if the mood suits. (Skip Port El Kantaoui, the purpose-built marina resort nearby — it's the opposite of this trip.)</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+
+    <!-- El Jem + Sfax -->
+    <div class="stop">
+      <div class="stop-head">
+        <span class="when">Day 8 · Sat 31 Jul</span>
+        <h3>El Jem, then on to Sfax</h3>
+      </div>
+      <div class="stop-body">
+        <p>Break the southbound train journey at <b>El Jem</b>: the third-largest Roman amphitheatre ever built, rising absurdly out of a small farming town. Walk the gladiators' corridors beneath the arena floor, then continue to Sfax by early evening.</p>
+        <img class="photo" src="https://www.kathmanduandbeyond.com/wp-content/uploads/2019/04/Amphitheatre-El-Djem-El-Jem-Tunisia-2.jpg" alt="The Roman amphitheatre at El Jem" loading="lazy">
+        <p class="photo-cap">The amphitheatre at El Jem. Entry (incl. the mosaic museum) is around 12 dinar. Photo: Kathmandu &amp; Beyond.</p>
+      </div>
+    </div>
+
+    <!-- Sfax -->
+    <div class="stop">
+      <div class="stop-head">
+        <span class="when">Days 9–11 · Sun 1 – Tue 3 Aug</span>
+        <h3>Sfax — eclipse basecamp</h3>
+        <span class="badge">2 August</span>
+      </div>
+      <div class="stop-body">
+        <p>Tunisia's least touristy major city, and the best-placed city on Earth for this eclipse. A day on the islands, then the main event — watched from Sfax itself, no travel required on the morning.</p>
+        <details class="more">
+          <summary>The detail</summary>
+          <ul>
+            <li><b>Kerkennah Islands (Sun 1 Aug)</b> — a 45-minute ferry to low, palm-scattered islands where fishing is still done with palm-frond traps. Hire bikes and ride the flat lanes; long seafood lunch; back by late afternoon. The trip's gentlest day, deliberately placed before the eclipse. Ferries (CTN, from the Jorf terminal) are bought same-day at the dock.</li>
+            <li><b>Sfax medina</b> — fully walled, almost entirely local: the fish market, the Kasbah, and the <b>Dar Jellouli Museum</b>, a 17th-century merchant's mansion of carved wood and tiled courtyards.</li>
+            <li><b>Eclipse day (Mon 2 Aug)</b> — partial phases begin mid-morning; totality at roughly 10:08am local, lasting 5m 41s with the Sun 56° up. Sfax sits close enough to the centreline that the city itself — corniche, rooftop or beach promenade — gives essentially the maximum. Afterwards: nothing scheduled. Let it land.</li>
+          </ul>
+          <div class="note">Re-verify the exact contact times with a dedicated eclipse calculator nearer the date, and pack certified eclipse glasses from home.</div>
+        </details>
+      </div>
+    </div>
+
+    <!-- Exit -->
+    <div class="stop">
+      <div class="stop-head">
+        <span class="when">Days 11–12 · Tue 3 – Wed 4 Aug</span>
+        <h3>Out via Paris</h3>
+      </div>
+      <div class="stop-body">
+        <p>Fly Sfax → Paris Orly the morning after the eclipse — a short local taxi to the airport, no cross-country travel on the busiest travel day Tunisia will have seen in years. An afternoon and evening in Paris, then Eurostar (or a short flight) to London.</p>
+        <details class="more">
+          <summary>Why this routing, and the backup</summary>
+          <ul>
+            <li>Sfax–Paris (Transavia) is the only European route from Sfax's small airport, flying roughly five times a week — book the moment summer 2027 seats are released, and don't take the earliest departure of the day; give the airport queues margin.</li>
+            <li><b>Backup:</b> if the flight is sold out or disrupted, the fallback is the train back to Tunis (~4 hours; tickets only sell 3 days ahead, so it can't be pre-booked) and a flight home from Tunis–Carthage. Louages — shared taxis that add cars on demand — are the road alternative if trains are overwhelmed.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BUDGET ================= -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Investment</div>
+    <h2>What it costs</h2>
+    <p style="max-width:720px">Indicative pre-booking estimates for <b>two people, all-in from London</b>. Eclipse week will carry surge pricing on rooms and flights — the ranges below assume booking early, not late. The route choice above is reflected in the table live.</p>
+    <table class="budget" aria-live="polite">
+      <thead>
+        <tr><th>Category</th><th>Covers</th><th>Estimate</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>International flights</td><td>London → Tunis; Sfax → Paris; Paris → London</td><td>£1,400–1,900</td></tr>
+        <tr><td>Accommodation</td><td>10 nights Tunisia + 1 night Paris</td><td>£900–1,300</td></tr>
+        <tr id="legRow"><td>Tunis → Sousse leg</td><td id="legDesc">Rail &amp; road (Option A)</td><td id="legCost">£60–100</td></tr>
+        <tr><td>Other local transport</td><td>Trains, louages, ferries, taxis</td><td>£80–130</td></tr>
+        <tr><td>Food &amp; drink</td><td>Markets to rooftop splurges</td><td>£250–350</td></tr>
+        <tr><td>Activities &amp; guides</td><td>Entries, guided tours, cooking class, bike hire</td><td>£250–350</td></tr>
+        <tr><td>Contingency</td><td>~10%</td><td>£350</td></tr>
+        <tr class="total"><td>Total (two people)</td><td></td><td id="grandTotal">£3,290–4,480</td></tr>
+      </tbody>
+    </table>
+    <p class="budget-note">Tunisia on the ground is inexpensive — the budget is dominated by flights and eclipse-week rooms. Cash is king outside Tunis and Sousse; carry dinars for Kairouan, Sfax and the islands.</p>
+  </div>
+</section>
+
+<!-- ================= BOOKING TIMELINE ================= -->
+<section class="journey">
+  <div class="wrap">
+    <div class="eyebrow">Securing it</div>
+    <h2>When to book what</h2>
+    <p style="max-width:720px">Sfax has around 31 hotels and is about to host a meaningful share of everyone on Earth chasing this eclipse. The order of operations matters more than usual.</p>
+    <div class="timeline">
+      <div class="tl-item now">
+        <h4>Now — Sfax accommodation</h4>
+        <p>Rooms for eclipse week are being released roughly a year out. Check every week or two and book the moment something suitable appears; expect deposits and strict cancellation terms.</p>
+      </div>
+      <div class="tl-item">
+        <h4>≈ 3 August 2026 — London ⇄ Tunis flight opens</h4>
+        <p>British Airways releases bookings exactly 355 days before departure — a fixed rule, not a guideline. For a 24 July 2027 outbound, that's early August 2026: about three weeks from now. Tunisair also flies the route on a similar full-service timeline.</p>
+      </div>
+      <div class="tl-item">
+        <h4>By late Sept/early Oct 2026 at the latest — Sfax → Paris flight</h4>
+        <p>Checked directly with <a href="https://www.transavia.com/help/en-uk/search-and-book/book-flight/how-long-booking-in-advance" target="_blank" rel="noopener">Transavia's own booking policy</a>: summer-season tickets (April–October) go on sale "by the end of September or beginning of October at the latest" the year before — so summer 2027 opens no later than around October 2026. That's a firm upper bound, not the likely date: the wider group has been releasing some routes far earlier this cycle, so it's worth checking every couple of weeks from now. This is the single most oversubscribed booking of the trip — book the day it opens.</p>
+      </div>
+      <div class="tl-item">
+        <h4>Early 2027 — the route decision &amp; remaining hotels</h4>
+        <p>Choose Option A, B or C for the Tunis–Sousse leg; if C, get quotes from Didon Tours and Simba Fun Travel. Book Tunis, Kairouan (if staying), Sousse and Paris rooms; reserve Dar El Jeld dinner and the Mdinti walk.</p>
+      </div>
+      <div class="tl-item">
+        <h4>Nearer the time</h4>
+        <p>Cooking class, Carthage guide, eclipse glasses (buy certified ones at home), re-verify eclipse contact times, order dinars.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRACTICAL ================= -->
+<section class="practical">
+  <div class="wrap">
+    <div class="eyebrow">Good to know</div>
+    <h2>Practical notes</h2>
+    <details>
+      <summary>Entry &amp; documents</summary>
+      <div class="body">UK citizens need no visa for stays under 90 days — just a passport valid six months beyond the trip. No mandatory vaccinations; hepatitis A, typhoid and an up-to-date tetanus are the standard recommendations.</div>
+    </details>
+    <details>
+      <summary>Heat, and how the itinerary handles it</summary>
+      <div class="body">Early August runs hot: mid-30s °C inland by noon, milder on the coast, with mornings around 23°C. The route is built around it — big sites at opening time, long shaded lunches, sea-facing bases, and the one genuinely cool option (Ain Draham, 900m) available via Options B/C. On eclipse morning the Sun does some of the work: temperatures drop noticeably during totality.</div>
+    </details>
+    <details>
+      <summary>Food &amp; dietary notes</summary>
+      <div class="body">Tunisian cooking is naturally kind to a mostly-vegetarian table: mechouia (grilled vegetable salad), ojja (eggs in spiced tomato), brik au fromage, lablabi (chickpea soup) and vegetable couscous are everywhere and excellent. Fish is the coast's pride — Sfax and Kerkennah especially. For a nut-sensitive traveller the mains are easy territory; pastries are where almonds and other nuts concentrate, so ask there. Alcohol is available but not universal: licensed restaurants and hotels serve wine — look for Tunisian AOC bottles, including the Muscat de Kelibia.</div>
+    </details>
+    <details>
+      <summary>Dress &amp; etiquette</summary>
+      <div class="body">Shoulders and knees covered in medinas and religious sites; Zitouna and Kairouan's Great Mosque admit non-Muslims to courtyards only, mornings. Fridays run to a different rhythm — plan mosque courtyards for other days where possible.</div>
+    </details>
+    <details>
+      <summary>Money &amp; language</summary>
+      <div class="body">The dinar is a closed currency — exchange on arrival, keep receipts, spend down before leaving. Cards work in Tunis, Sousse and bigger hotels; carry cash everywhere else, especially Kairouan, Sfax's medina and Kerkennah. French is the second language everywhere; English-speaking guides are readily bookable (Mdinti, Bardo, Didon Tours all confirmed) but confirm English at every booking rather than assuming.</div>
+    </details>
+    <details>
+      <summary>Getting around</summary>
+      <div class="body">The Tunis–Sousse–Sfax corridor runs on SNCFT trains and comfortable coaches; note train tickets only go on sale three days ahead, so they're bought in-country, not in advance. Louages (shared taxis) fill every gap and scale with demand. The Kerkennah ferry runs from Sfax's Jorf terminal, roughly 8am out and 4pm back, tickets at the dock.</div>
+    </details>
+    <details>
+      <summary>Further reading</summary>
+      <div class="body"><a href="https://www.kathmanduandbeyond.com/visiting-unesco-world-heritage-sites-tunisia/" target="_blank" rel="noopener">Kathmandu &amp; Beyond's independent-travel guide to Tunisia's UNESCO sites</a> is a genuinely useful cross-check for this trip — first-hand public-transport routes, current entrance fees and honest notes on which sites reward a guide versus a self-guided wander.</div>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <p><b>Tunisia in totality</b> · 24 July – 4 August 2027</p>
+  <p>Carthage · the medina · Kairouan · Sousse · El Jem · Sfax · Kerkennah · 5m 41s of darkness</p>
+</footer>
+
+<script type="module">
+const options = document.querySelectorAll('.option');
+const legDesc = document.getElementById('legDesc');
+const legCost = document.getElementById('legCost');
+const grandTotal = document.getElementById('grandTotal');
+
+// Base totals excluding the leg: low £3,230 / high £4,380
+const BASE_LOW = 3230;
+const BASE_HIGH = 4380;
+
+const legData = {
+  public:    { desc: 'Rail & road (Option A)',          low: 60,  high: 100 },
+  selfdrive: { desc: 'Self-drive hire car (Option B)',  low: 250, high: 350 },
+  driver:    { desc: 'Private driver-guide (Option C)', low: 300, high: 500 }
+};
+
+function fmt(n) {
+  return '£' + n.toLocaleString('en-GB');
+}
+
+function update(value) {
+  const d = legData[value];
+  legDesc.textContent = d.desc;
+  legCost.textContent = fmt(d.low) + '–' + fmt(d.high);
+  grandTotal.textContent = fmt(BASE_LOW + d.low) + '–' + fmt(BASE_HIGH + d.high);
+}
+
+for (const opt of options) {
+  const input = opt.querySelector('input');
+  input.addEventListener('change', () => {
+    for (const o of options) o.classList.remove('selected');
+    opt.classList.add('selected');
+    update(input.value);
+  });
+}
+
+update('public');
+</script>
+</body>
+</html>
