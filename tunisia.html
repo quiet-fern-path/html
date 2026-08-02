@@ -372,43 +372,279 @@ details.more li {
 }
 
 /* ---------- Budget ---------- */
-table.budget {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1.25rem;
+.overview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+.ov-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.25rem 1.3rem 1.1rem;
+}
+.ov-label {
+  font-size: .72rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+.ov-figure {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: var(--cobalt-deep);
+  line-height: 1.1;
+  margin: .35rem 0 .4rem;
+  font-variant-numeric: tabular-nums;
+}
+.ov-card p {
+  font-size: .86rem;
+  color: var(--muted);
+  margin: 0 0 .9rem;
+}
+.ov-bar {
+  height: 5px;
+  border-radius: 3px;
+  background: var(--paper-2);
+  overflow: hidden;
+}
+.ov-bar span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--cobalt);
+  border-radius: 3px;
+  transition: width .3s ease-out;
+}
+@media (max-width: 760px) {
+  .overview { grid-template-columns: 1fr; }
+}
+
+.totals {
+  background: var(--night-2);
+  color: #e8ebf3;
+  border-radius: 10px;
+  margin-top: 1rem;
+  padding: 1.5rem 1.5rem 1.25rem;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 1.25rem;
+  align-items: end;
+}
+.tot-label {
+  display: block;
+  font-size: .72rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: #9aa4bd;
+  margin-bottom: .2rem;
+}
+.tot b {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: #f5e9c8;
+  font-variant-numeric: tabular-nums;
+}
+.tot.main b { font-size: 2.4rem; line-height: 1.05; }
+.tot-note {
+  grid-column: 1 / -1;
+  font-size: .84rem;
+  color: #b9c1d4;
+  margin: .4rem 0 0;
+  padding-top: .9rem;
+  border-top: 1px solid rgba(255,255,255,.14);
+}
+.tot-note span { color: #f5e9c8; font-weight: 600; }
+@media (max-width: 640px) {
+  .totals { grid-template-columns: 1fr 1fr; }
+  .tot.main { grid-column: 1 / -1; }
+}
+
+.ledger-title { font-size: 1.5rem; margin: 2.75rem 0 .25rem; }
+.ledger-intro { font-size: .9rem; color: var(--muted); margin-bottom: 1.25rem; }
+.ledger {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 10px;
   overflow: hidden;
-  font-size: .95rem;
+  margin-bottom: 1rem;
 }
-table.budget th, table.budget td {
-  text-align: left;
-  padding: .8rem 1.1rem;
-  border-top: 1px solid var(--line);
-}
-table.budget thead th {
-  border-top: none;
+.ledger-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .95rem 1.25rem;
   background: var(--paper-2);
-  font-size: .75rem;
+  border-bottom: 1px solid var(--line);
+}
+.ledger-head h4 {
+  margin: 0;
+  font-size: .78rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+.ledger-sum {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  font-weight: 600;
+  color: var(--cobalt-deep);
+  font-variant-numeric: tabular-nums;
+}
+details.line { border-top: 1px solid var(--line); }
+details.line:first-of-type { border-top: none; }
+details.line summary {
+  cursor: pointer;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: .85rem 1.25rem .85rem 2.4rem;
+  min-height: 44px;
+  position: relative;
+  transition: background .12s;
+}
+details.line summary::-webkit-details-marker { display: none; }
+details.line summary::before {
+  content: "+";
+  position: absolute;
+  left: 1.2rem;
+  color: var(--gold);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+details.line[open] summary::before { content: "\2013"; }
+details.line summary:hover { background: var(--paper); }
+details.line summary:focus-visible {
+  outline: 2px solid var(--cobalt);
+  outline-offset: -2px;
+}
+.line-main { min-width: 0; }
+.line-name { display: block; font-weight: 600; font-size: .97rem; }
+.line-when {
+  display: block;
+  font-size: .8rem;
+  color: var(--muted);
+  margin-top: .1rem;
+}
+.line-cost {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.line-body {
+  padding: 0 1.25rem 1.1rem 2.4rem;
+  font-size: .92rem;
+  color: #333a46;
+}
+.line-body p { margin: 0 0 .65rem; }
+.line-body p:last-child { margin-bottom: 0; }
+.src { font-size: .82rem; color: var(--muted); }
+.flag {
+  display: inline-block;
+  background: rgba(199, 154, 59, .16);
+  color: #8a6714;
+  font-size: .7rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: .2rem .5rem;
+}
+.flag.good { background: rgba(36, 86, 164, .12); color: var(--cobalt-deep); }
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.cmp {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.15rem 1.25rem 1rem;
+}
+.cmp.chosen {
+  border-color: var(--cobalt);
+  box-shadow: 0 0 0 2px rgba(36, 86, 164, .18);
+}
+.cmp-tag {
+  font-size: .68rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--cobalt);
+}
+.cmp-tag.alt { color: var(--muted); }
+.cmp h4 { font-size: 1.15rem; margin: .2rem 0 .8rem; }
+.cmp ul { list-style: none; margin: 0; padding: 0; }
+.cmp li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: .75rem;
+  font-size: .89rem;
+  padding: .35rem 0;
+  border-bottom: 1px dotted var(--line);
+}
+.cmp li span { color: #333a46; }
+.cmp li b { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cmp-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: .7rem;
+}
+.cmp-total span {
+  font-size: .72rem;
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--muted);
-}
-table.budget td:last-child, table.budget th:last-child {
-  text-align: right;
-  white-space: nowrap;
-}
-table.budget tr.total td {
   font-weight: 700;
-  font-size: 1.05rem;
-  background: var(--paper-2);
 }
-#legRow td:first-child { color: var(--cobalt-deep); font-weight: 600; }
+.cmp-total b {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--cobalt-deep);
+  font-variant-numeric: tabular-nums;
+}
+.cmp-verdict {
+  grid-column: 1 / -1;
+  background: var(--night-2);
+  color: #cdd4e4;
+  border-radius: 10px;
+  padding: 1.35rem 1.5rem 1.1rem;
+}
+.cmp-gap { margin-bottom: .9rem; }
+.cmp-gap b {
+  display: block;
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #f5e9c8;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+.cmp-sub { font-size: .82rem; color: #9aa4bd; }
+.cmp-verdict p { font-size: .9rem; margin: 0 0 .7rem; }
+.cmp-verdict p:last-child { margin-bottom: 0; }
+@media (max-width: 700px) {
+  .compare { grid-template-columns: 1fr; }
+}
 .budget-note {
-  font-size: .83rem;
+  font-size: .86rem;
   color: var(--muted);
-  margin-top: .8rem;
+  margin-top: 1.1rem;
 }
 
 /* ---------- Timeline ---------- */
@@ -568,7 +804,7 @@ footer b { color: #f5e9c8; font-weight: 600; }
           <ul>
             <li><b>Bardo Museum</b> — the world's largest collection of Roman mosaics, housed in a beylical palace. The ideal first stop: it lays out the whole Punic–Roman–Islamic story before you meet the sites themselves.</li>
             <li><b>The medina with <a href="https://www.mdinti.org/#activities" target="_blank" rel="noopener">Mdinti</a></b> — themed walks run by a cooperative of the medina's own craftspeople, restaurateurs and booksellers rather than a tour company. Finish in the courtyard of <b>Zitouna Mosque</b> (open to visitors mornings) and on the rooftop of <b>Café Panorama</b>, reached through a carpet shop, for a wraparound view over the old city. Agree drink prices before ordering.</li>
-            <li><b>Carthage, guided</b> — Byrsa Hill, the Punic ports and the Antonine Baths, with a licensed guide to reassemble a city that was twice erased. Go early; done by midday. Entry to the main sites runs about 12 dinar, all included on one ticket.</li>
+            <li><b>Carthage, guided</b> — Byrsa Hill, the Punic ports and the Antonine Baths, with a licensed guide to reassemble a city that was twice erased. Go early; done by midday. Entry to the main sites is one ticket — 30 dinar a head from January 2027, or 70 dinar for the combined Bardo–Carthage ticket, which is the better buy if you do both.</li>
             <li><b>Sidi Bou Saïd</b> — the cobalt-shuttered village on the cliff above the bay. Time it for golden hour.</li>
             <li><b>Dar El Jeld</b> — a splurge dinner in a restored medina mansion with rooftop dining; treat it as the birthday-week dinner.</li>
             <li><b>One open day</b> — either a hands-on Tunisian cooking class with a market visit (vegetarian-friendly, English-speaking), or a deliberately empty day at La Marsa's seafront.</li>
@@ -587,29 +823,29 @@ footer b { color: #f5e9c8; font-weight: 600; }
       <div class="stop-body">
         <p>Every version passes through <b>Kairouan</b>, the holy city, for the Great Mosque at its cool, quiet morning best. The question is what else this leg carries — and it's the one choice that shapes the trip's cost, pace and character. Select an option to see how it changes the budget below.</p>
         <div class="options-grid" role="radiogroup" aria-label="Route options for the Tunis to Sousse leg">
-          <label class="option selected" data-cost="60" data-costlabel="£60–100">
+          <label class="option selected" data-leg="public">
             <input type="radio" name="leg" value="public" checked>
             <span class="opt-label">Option A</span>
             <h4>Rail &amp; road</h4>
-            <div class="price">≈ £60–100 for the leg</div>
+            <div class="price">≈ £40 for the leg</div>
             <p>Bus to Kairouan, on to Sousse. Simple, cheap, nothing to book ahead. The fastest version — buys an extra day for Tunis or Sousse.</p>
             <p><b>Trade:</b> skips the Roman northwest entirely.</p>
             <span class="pick">Select</span>
           </label>
-          <label class="option" data-cost="300" data-costlabel="£250–350">
+          <label class="option" data-leg="selfdrive">
             <input type="radio" name="leg" value="selfdrive">
             <span class="opt-label">Option B</span>
             <h4>Self-drive</h4>
-            <div class="price">≈ £250–350 for the leg</div>
+            <div class="price">≈ £160 for the leg</div>
             <p>Hire car Tunis → Sousse, unlocking the northwest: <b>Bulla Regia</b>'s underground Roman villas, <b>Dougga</b> at dawn, or an <b>Ain Draham</b> forest hike at a cool 26°C.</p>
             <p><b>Trade:</b> driving on the right on unfamiliar roads; a passport checkpoint near Bulla Regia; zero-alcohol limit.</p>
             <span class="pick">Select</span>
           </label>
-          <label class="option" data-cost="400" data-costlabel="£300–500">
+          <label class="option" data-leg="driver">
             <input type="radio" name="leg" value="driver">
             <span class="opt-label">Option C</span>
             <h4>Private driver-guide</h4>
-            <div class="price">≈ £300–500 for the leg</div>
+            <div class="price">≈ £300 for the leg</div>
             <p>Same sites as self-drive, someone else drives — with a real guide at the ruins. Bespoke two-day routes via <b>Didon Tours</b> or <b>Simba Fun Travel</b>; ready-made day tours also exist and can often be customised — see below.</p>
             <p><b>Trade:</b> the priciest version — but the most restful and the best taught.</p>
             <span class="pick">Select</span>
@@ -621,7 +857,7 @@ footer b { color: #f5e9c8; font-weight: 600; }
           <summary>What the northwest options actually are</summary>
           <ul>
             <li><b>Bulla Regia</b> — Roman townhouses built <i>underground</i> to escape the summer heat, their mosaics still in place two storeys down. Unique in the Roman world. Worth a guide at the entrance.</li>
-            <li><b>Dougga</b> — the best-preserved Roman town in North Africa, on a hilltop of olive groves. Its magic hour is dawn, before the heat and the coaches — which requires overnighting nearby, not just passing through. Entry is a modest 8 dinar.</li>
+            <li><b>Dougga</b> — the best-preserved Roman town in North Africa, on a hilltop of olive groves. Its magic hour is dawn, before the heat and the coaches — which requires overnighting nearby, not just passing through. Entry is around 20 dinar a head under the 2027 tariff.</li>
             <li><b>Ain Draham</b> — a mountain town in cork-oak forest at 900m, around 26°C when the coast is past 30°C. The trip's one genuinely cool walk.</li>
             <li><b>Makthar</b> — a quiet, little-visited Roman site "surrounded by nature"; features on some ready-made tours as an alternative to the above.</li>
           </ul>
@@ -653,7 +889,7 @@ footer b { color: #f5e9c8; font-weight: 600; }
           <summary>The detail</summary>
           <ul>
             <li><b>Sousse Archaeological Museum</b> — the world's second-largest mosaic collection after the Bardo, but intimate: everything here was dug from the city beneath your feet, displayed inside an 11th-century Kasbah with sea views from the ramparts.</li>
-            <li><b>The Ribat and medina</b> — a UNESCO-listed fortress-monastery and one of Tunisia's liveliest old towns. The medina itself is free to wander; the Ribat is around 8 dinar, the Great Mosque 5 dinar.</li>
+            <li><b>The Ribat and medina</b> — a UNESCO-listed fortress-monastery and one of Tunisia's liveliest old towns. The medina itself is free to wander; the Ribat and the museum are around 10 dinar a head, the Great Mosque 5.</li>
             <li><b>Optional: Hergla</b> — a small whitewashed fishing village on low cliffs just up the coast; quiet, pretty and refreshingly undeveloped. An easy, unhurried half-day if the mood suits. (Skip Port El Kantaoui, the purpose-built marina resort nearby — it's the opposite of this trip.)</li>
           </ul>
         </details>
@@ -669,7 +905,7 @@ footer b { color: #f5e9c8; font-weight: 600; }
       <div class="stop-body">
         <p>Break the southbound train journey at <b>El Jem</b>: the third-largest Roman amphitheatre ever built, rising absurdly out of a small farming town. Walk the gladiators' corridors beneath the arena floor, then continue to Sfax by early evening.</p>
         <img class="photo" src="https://www.kathmanduandbeyond.com/wp-content/uploads/2019/04/Amphitheatre-El-Djem-El-Jem-Tunisia-2.jpg" alt="The Roman amphitheatre at El Jem" loading="lazy">
-        <p class="photo-cap">The amphitheatre at El Jem. Entry (incl. the mosaic museum) is around 12 dinar. Photo: Kathmandu &amp; Beyond.</p>
+        <p class="photo-cap">The amphitheatre at El Jem. Entry (incl. the mosaic museum) is 30 dinar a head from January 2027. Photo: Kathmandu &amp; Beyond.</p>
       </div>
     </div>
 
@@ -707,6 +943,7 @@ footer b { color: #f5e9c8; font-weight: 600; }
           <ul>
             <li>Sfax–Paris (Transavia) is the only European route from Sfax's small airport, flying roughly five times a week — book the moment summer 2027 seats are released, and don't take the earliest departure of the day; give the airport queues margin.</li>
             <li><b>Backup:</b> if the flight is sold out or disrupted, the fallback is the train back to Tunis (~4 hours; tickets only sell 3 days ahead, so it can't be pre-booked) and a flight home from Tunis–Carthage. Louages — shared taxis that add cars on demand — are the road alternative if trains are overwhelmed.</li>
+            <li><b>What it costs:</b> the Paris routing runs about £945 all in against roughly £390 via Tunis — a premium of £555, or £278 each. <a href="#budget">The full comparison is in the budget</a>.</li>
           </ul>
         </details>
       </div>
@@ -715,27 +952,301 @@ footer b { color: #f5e9c8; font-weight: 600; }
 </section>
 
 <!-- ================= BUDGET ================= -->
-<section>
+<section id="budget">
   <div class="wrap">
     <div class="eyebrow">Investment</div>
     <h2>What it costs</h2>
-    <p style="max-width:720px">Indicative pre-booking estimates for <b>two people, all-in from London</b>. Eclipse week will carry surge pricing on rooms and flights — the ranges below assume booking early, not late. The route choice above is reflected in the table live.</p>
-    <table class="budget" aria-live="polite">
-      <thead>
-        <tr><th>Category</th><th>Covers</th><th>Estimate</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>International flights</td><td>London → Tunis; Sfax → Paris; Paris → London</td><td>£1,400–1,900</td></tr>
-        <tr><td>Accommodation</td><td>10 nights Tunisia + 1 night Paris</td><td>£900–1,300</td></tr>
-        <tr id="legRow"><td>Tunis → Sousse leg</td><td id="legDesc">Rail &amp; road (Option A)</td><td id="legCost">£60–100</td></tr>
-        <tr><td>Other local transport</td><td>Trains, louages, ferries, taxis</td><td>£80–130</td></tr>
-        <tr><td>Food &amp; drink</td><td>Markets to rooftop splurges</td><td>£250–350</td></tr>
-        <tr><td>Activities &amp; guides</td><td>Entries, guided tours, cooking class, bike hire</td><td>£250–350</td></tr>
-        <tr><td>Contingency</td><td>~10%</td><td>£350</td></tr>
-        <tr class="total"><td>Total (two people)</td><td></td><td id="grandTotal">£3,290–4,480</td></tr>
-      </tbody>
-    </table>
-    <p class="budget-note">Tunisia on the ground is inexpensive — the budget is dominated by flights and eclipse-week rooms. Cash is king outside Tunis and Sousse; carry dinars for Kairouan, Sfax and the islands.</p>
+    <p style="max-width:720px">Best-guess point estimates for <b>two people, all-in from London</b> — not ranges, so they can be checked against real quotes. Every line was priced against current listings in mid-2026 and adjusted for the 2027 season; open any line for the working and the source. The route choice above feeds through live.</p>
+
+    <!-- Overview -->
+    <div class="overview">
+      <div class="ov-card">
+        <div class="ov-label">Getting there &amp; back</div>
+        <div class="ov-figure" id="ovFlights">£910</div>
+        <p>Three one-way legs: two flights and a Eurostar.</p>
+        <div class="ov-bar"><span id="barFlights"></span></div>
+      </div>
+      <div class="ov-card">
+        <div class="ov-label">Tunisia · 10 nights</div>
+        <div class="ov-figure" id="ovTunisia">£1,669</div>
+        <p>Rooms, ground transport, food, guides and every entry ticket.</p>
+        <div class="ov-bar"><span id="barTunisia"></span></div>
+      </div>
+      <div class="ov-card">
+        <div class="ov-label">Paris · 1 night</div>
+        <div class="ov-figure" id="ovParis">£295</div>
+        <p>The decompression stop between totality and home.</p>
+        <div class="ov-bar"><span id="barParis"></span></div>
+      </div>
+    </div>
+
+    <div class="totals" aria-live="polite">
+      <div class="tot main">
+        <span class="tot-label">Total, two people</span>
+        <b id="grandTotal">£3,305</b>
+      </div>
+      <div class="tot">
+        <span class="tot-label">Per person</span>
+        <b id="perPerson">£1,653</b>
+      </div>
+      <div class="tot">
+        <span class="tot-label">Per day, for two</span>
+        <b id="perDay">£275</b>
+      </div>
+      <p class="tot-note">Subtotal <span id="subTotal">£2,874</span> plus <span id="contingency">£431</span> contingency at 15% — weighted deliberately high, because two lines (the Sfax→Paris fare and eclipse-week rooms) carry nearly all the risk.</p>
+    </div>
+
+    <!-- Detailed ledger -->
+    <h3 class="ledger-title">The breakdown</h3>
+    <p class="ledger-intro">Tap any line for the reasoning and the price checked against.</p>
+
+    <div class="ledger">
+      <div class="ledger-head">
+        <h4>Getting there &amp; back</h4>
+        <span class="ledger-sum" id="sumFlights">£910</span>
+      </div>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">London → Tunis</span><span class="line-when">Sat 24 Jul · one-way, two people</span></span>
+          <span class="line-cost">£260</span>
+        </summary>
+        <div class="line-body">
+          <p>£130 each. Tunisair flies direct from Heathrow and Nouvelair from Gatwick; peak-summer <b>returns</b> currently advertise at £167–263, so a one-way at £130 booked the day seats open is a fair peak-season assumption. This leg lands a week before the eclipse wave and carries little event risk.</p>
+          <p><b>Ignore what the search engines show today.</b> A live check for 24 July 2027 returns no Tunisair and no Nouvelair — neither has loaded the season — so the only bookable options are connecting: £668 for two via Rome with a 19-hour overnight, £863 via Casablanca, or £1,112 on Air France via CDG for the one same-day routing. All are artefacts of an empty schedule. Wait for the direct carriers.</p>
+          <p class="src">Checked against <a href="https://www.expedia.co.uk/lp/flights/lhr/tun/london-to-tunis" target="_blank" rel="noopener">current LHR–TUN fares</a> (Jul 2026) and sampled live via Kiwi.com.</p>
+        </div>
+      </details>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">Sfax → Paris Orly</span><span class="line-when">Tue 3 Aug · one-way, two people</span></span>
+          <span class="line-cost">£500</span>
+        </summary>
+        <div class="line-body">
+          <p><span class="flag">Most volatile line · revised up</span></p>
+          <p>£250 each, hold bags included. Live fare checks bracket this hard: the same Transavia flight books at <b>£281–375 for two</b> off-peak and seven months out (early March 2027), and at <b>£762–1,096 for two</b> in the August diaspora peak booked three weeks ahead. Eclipse morning is a peak day booked very early, so it sits between the two. Nothing is loaded for August 2027 yet.</p>
+          <p>This is the only European route from Sfax, five flights a week, on the morning everyone who came for totality leaves. Book it the day the schedule opens. Leave it late and £350 each is entirely plausible.</p>
+          <p class="src">Fares sampled live via Kiwi.com, Jul–Aug 2026; capacity context from <a href="https://www.hdhuntphoto.com/tunisia" target="_blank" rel="noopener">eclipse-planning notes on Sfax</a>.</p>
+        </div>
+      </details>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">Paris → London</span><span class="line-when">Wed 4 Aug · Eurostar Standard</span></span>
+          <span class="line-cost">£150</span>
+        </summary>
+        <div class="line-body">
+          <p>£75 each. Advance Standard fares open six months out from around £52 one-way; £75 allows for an early-August midweek departure at a civilised hour rather than the cheapest 07:12.</p>
+          <p class="src">Checked against <a href="https://www.eurostar.com/us-en/train/paris-to-london" target="_blank" rel="noopener">Eurostar's own Paris–London fares</a>.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="ledger">
+      <div class="ledger-head">
+        <h4>Tunisia · 24 Jul – 3 Aug</h4>
+        <span class="ledger-sum" id="sumTunisia">£1,669</span>
+      </div>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">Tunis</span><span class="line-when">3 nights · medina dar</span></span>
+          <span class="line-cost">£225</span>
+        </summary>
+        <div class="line-body">
+          <p>£75 a night. Restored medina guesthouses — Dar Ben Gacem, Dar Dorra, El Patio — currently list at £46–71 for a double; £75 assumes a July uplift and a room worth waking up in.</p>
+          <p class="src">Checked against <a href="https://ph.trip.com/hotels/pension/city/tn/medina-de-tunis.html" target="_blank" rel="noopener">current Medina of Tunis guesthouse rates</a>.</p>
+        </div>
+      </details>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">En route</span><span class="line-when">1 night · Kairouan or the northwest</span></span>
+          <span class="line-cost">£55</span>
+        </summary>
+        <div class="line-body">
+          <p>The stopover night on the Tunis→Sousse leg. Kairouan and the inland towns are markedly cheaper than the coast; £55 buys a comfortable mid-range double. If Option B or C takes you to Dougga for dawn, this becomes a maison d'hôte near Téboursouk at a similar rate.</p>
+        </div>
+      </details>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">Sousse</span><span class="line-when">3 nights · sea-facing, incl. the birthday</span></span>
+          <span class="line-cost">£315</span>
+        </summary>
+        <div class="line-body">
+          <p>£105 a night. Sousse is at its annual peak in this window — August rates run roughly 70–78% above the yearly average, driven by the returning diaspora rather than the eclipse. £105 targets a proper sea-facing four-star rather than a resort-strip package hotel.</p>
+          <p class="src">Checked against <a href="https://www.kayak.com/Sousse-Hotels.48786.hotel.ksp" target="_blank" rel="noopener">Sousse seasonal rate data</a>.</p>
+        </div>
+      </details>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">Sfax</span><span class="line-when">3 nights · eclipse basecamp</span></span>
+          <span class="line-cost">£174</span>
+        </summary>
+        <div class="line-body">
+          <p><span class="flag good">Quoted, not estimated</span></p>
+          <p>TND 229.50 per night for a double across 31 Jul – 2 Aug, converted at 1 TND ≈ £0.253 — so £58 a night, £174 for the stay. Notably, that is <em>not</em> a surged rate: it suggests eclipse pricing has yet to reach this property. Get it in writing with the rate stated, expect a deposit, and read the cancellation terms — rooms in the path of totality historically spike about three weeks out, and hotels sometimes re-list.</p>
+          <p class="src">Rate supplied direct; conversion at the <a href="https://www.xe.com/currencyconverter/convert/?Amount=1&amp;From=TND&amp;To=GBP" target="_blank" rel="noopener">30-day average TND/GBP</a>.</p>
+        </div>
+      </details>
+
+      <details class="line" id="legLine">
+        <summary>
+          <span class="line-main"><span class="line-name">Tunis → Sousse leg</span><span class="line-when" id="legDesc">Louages via Kairouan (Option A)</span></span>
+          <span class="line-cost" id="legCost">£40</span>
+        </summary>
+        <div class="line-body">
+          <p id="legBody">Louage fares are fixed and tiny: Tunis–Kairouan runs about 13 dinar a head and Kairouan–Sousse under 5, so the transport itself is roughly £10 for two. The rest is station taxis, luggage and a half-day guide at the Great Mosque.</p>
+          <p class="src">Fares from <a href="https://www.thetunisiaguide.com/travel-info/louage-transport-tunisia/" target="_blank" rel="noopener">the current louage fare guide</a>. Change the option above to reprice this line.</p>
+        </div>
+      </details>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">Other local transport</span><span class="line-when">Trains, ferry, taxis, airport runs</span></span>
+          <span class="line-cost">£80</span>
+        </summary>
+        <div class="line-body">
+          <p>Tunisian rail is almost free by British standards — Tunis–Sousse and Sousse–El Jem–Sfax are £3–5 a head each. The bulk of this line is city taxis, the Kerkennah ferry and the run out to Sfax–Thyna. Budget a margin for louage drivers quoting above the fixed fare in the days around totality.</p>
+          <p class="src">Fares cross-checked with <a href="https://www.seat61.com/train-travel-in-tunisia.htm" target="_blank" rel="noopener">Seat61's Tunisia rail guide</a>.</p>
+        </div>
+      </details>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">Food &amp; drink</span><span class="line-when">Markets, long lunches, one splurge</span></span>
+          <span class="line-cost">£415</span>
+        </summary>
+        <div class="line-body">
+          <p>About £30 a day for two on ordinary days — a realistic Tunisian food budget is around 50 dinar per person daily, which covers three meals properly rather than frugally. On top: Dar El Jeld with wine at roughly £110, and a long seafood lunch on Kerkennah at £35.</p>
+          <p class="src">Daily figures from <a href="https://www.amigosim.com/blog/what-is-the-average-cost-to-travel-to-tunisia" target="_blank" rel="noopener">2026 Tunisia cost-of-travel data</a>.</p>
+        </div>
+      </details>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">Entry tickets</span><span class="line-when">Every site, both of you, 2027 tariffs</span></span>
+          <span class="line-cost">£83</span>
+        </summary>
+        <div class="line-body">
+          <p><span class="flag">Repriced — fees roughly tripled</span></p>
+          <p>Tunisia restructured museum tariffs by decree on 1 April 2026, with a second step in January 2027. From that date: Bardo 45 dinar, Carthage / El Jem / Kairouan 30 dinar each, regional museums such as Sousse 10 dinar, Zitouna and similar 5 dinar — and a combined Bardo–Carthage ticket at 70 dinar. Roughly 165 dinar a head across the whole route, so £83 for two. Older guidance quoting 12–13 dinar is now badly out of date.</p>
+          <p class="src">Tariff schedule per the <a href="https://www.webmanagercenter.com/2026/04/01/564097/tunisie-nouveaux-tarifs-dentree-pour-les-musees-monuments-et-sites-archeologiques-des-le-1er-avril-2026/" target="_blank" rel="noopener">Journal officiel decree</a> and its <a href="https://managers.tn/2026/04/01/voici-les-nouveaux-tarifs-pour-les-musees-et-sites-historiques-en-tunisie/" target="_blank" rel="noopener">category-by-category breakdown</a>.</p>
+        </div>
+      </details>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">Guides &amp; experiences</span><span class="line-when">Carthage, Mdinti, cooking class, bikes</span></span>
+          <span class="line-cost">£262</span>
+        </summary>
+        <div class="line-body">
+          <p>Licensed guide at Carthage £55; the Mdinti medina walk £45; Kerkennah bike hire £12; and a private Tunis cooking class with market visit at £150 for two. That last figure is the one to pin down early — private classes are quoted anywhere from about £85 to £290 for two, so a direct quote beats an aggregator listing.</p>
+          <p class="src">Class pricing range from <a href="https://www.viator.com/Tunisia-tours/Cooking-Classes/d4393-g6-c19" target="_blank" rel="noopener">current Tunisia cooking-class listings</a>.</p>
+        </div>
+      </details>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">Eclipse glasses</span><span class="line-when">Certified, bought at home</span></span>
+          <span class="line-cost">£20</span>
+        </summary>
+        <div class="line-body">
+          <p>Two certified ISO 12312-2 pairs plus a spare, bought in the UK well ahead. Do not plan to buy these in Sfax; do not trust anything sold on the street that week.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="ledger">
+      <div class="ledger-head">
+        <h4>Paris · 3–4 Aug</h4>
+        <span class="ledger-sum" id="sumParis">£295</span>
+      </div>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">Hotel</span><span class="line-when">1 night · mid-range, central-ish</span></span>
+          <span class="line-cost">£150</span>
+        </summary>
+        <div class="line-body">
+          <p>Mid-range Paris rooms average around €165 a night in 2026, and August is the softest month of the year there — the city empties. Staying in the 11th, 12th or 13th rather than the 1st or 6th saves 25–40% for a ten-minute metro penalty.</p>
+          <p class="src">Rates from <a href="https://radicalstorage.com/travel/is-paris-expensive/" target="_blank" rel="noopener">2026 Paris cost data</a>.</p>
+        </div>
+      </details>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">Transfers &amp; metro</span><span class="line-when">Orly into town, then Gare du Nord</span></span>
+          <span class="line-cost">£30</span>
+        </summary>
+        <div class="line-body">
+          <p>Orlybus or the Orlyval–RER B combination in, metro out, plus a couple of hops in between. A taxi from Orly would roughly double this line on its own.</p>
+        </div>
+      </details>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">Food &amp; drink</span><span class="line-when">Lunch, dinner, wine</span></span>
+          <span class="line-cost">£90</span>
+        </summary>
+        <div class="line-body">
+          <p>One proper bistro dinner for two plus a light lunch. Paris is roughly three times Tunisian prices, so this single day costs what three do in Sfax — worth knowing before it surprises you.</p>
+        </div>
+      </details>
+
+      <details class="line">
+        <summary>
+          <span class="line-main"><span class="line-name">The afternoon</span><span class="line-when">Entry, incidentals</span></span>
+          <span class="line-cost">£25</span>
+        </summary>
+        <div class="line-body">
+          <p>One museum or a Seine walk and a coffee. Deliberately unplanned: this is a landing day after twelve days of movement, not a sightseeing day.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Paris vs backup -->
+    <h3 class="ledger-title">What the Paris night actually costs</h3>
+    <p class="ledger-intro">The route home is a real choice, not just logistics. Flying out via Paris is the plan; the fallback — train north to Tunis, fly home from Carthage — is also the cheap option. Here is the gap.</p>
+
+    <div class="compare">
+      <div class="cmp chosen">
+        <div class="cmp-tag">Planned</div>
+        <h4>Out via Paris</h4>
+        <ul>
+          <li><span>Sfax → Paris Orly, flight</span><b>£500</b></li>
+          <li><span>Paris hotel, 1 night</span><b>£150</b></li>
+          <li><span>Transfers, food, the afternoon</span><b>£145</b></li>
+          <li><span>Paris → London, Eurostar</span><b>£150</b></li>
+        </ul>
+        <div class="cmp-total"><span>Total</span><b>£945</b></div>
+      </div>
+      <div class="cmp">
+        <div class="cmp-tag alt">Backup</div>
+        <h4>Out via Tunis</h4>
+        <ul>
+          <li><span>Sfax → Tunis, train</span><b>£10</b></li>
+          <li><span>Tunis hotel, 1 night</span><b>£75</b></li>
+          <li><span>Transfers and food</span><b>£45</b></li>
+          <li><span>Tunis → London, flight</span><b>£260</b></li>
+        </ul>
+        <div class="cmp-total"><span>Total</span><b>£390</b></div>
+      </div>
+      <div class="cmp-verdict">
+        <div class="cmp-gap">
+          <span class="tot-label">Paris premium</span>
+          <b>£555</b>
+          <span class="cmp-sub">£278 each · about 17% of the whole trip</span>
+        </div>
+        <p>Most of the gap is the flight, not the city: £500 to Orly against roughly £270 of train and short-haul to get home via Tunis. What the premium buys is a soft landing — a taxi rather than a four-hour rail journey on the busiest travel day Tunisia will have seen in years, and a night in Paris rather than a night beside Carthage airport.</p>
+        <p>What it costs beyond money: Tunisian rail tickets only go on sale three days ahead, so the backup cannot be pre-booked and cannot be relied on — it is a fallback, not a plan. If the Sfax–Paris fare opens above roughly £300 each, though, the sums stop favouring Paris and it is worth pricing Tunis–London properly before committing.</p>
+      </div>
+    </div>
+
+    <p class="budget-note">Tunisia on the ground stays inexpensive — flights, eclipse-week rooms and the Sousse peak carry the budget. Cash is king outside Tunis and Sousse; carry dinars for Kairouan, Sfax and the islands. Conversions throughout at <b>1 TND ≈ £0.253</b>, the 30-day average to end-July 2026.</p>
   </div>
 </section>
 
@@ -748,15 +1259,15 @@ footer b { color: #f5e9c8; font-weight: 600; }
     <div class="timeline">
       <div class="tl-item now">
         <h4>Now — Sfax accommodation</h4>
-        <p>Rooms for eclipse week are being released roughly a year out. Check every week or two and book the moment something suitable appears; expect deposits and strict cancellation terms.</p>
+        <p>A double is quoted at <b>TND 229.50 per night</b> across 31 July – 2 August — about £58, and plainly not a surged rate yet. Book it. Get the rate confirmed in writing, expect a deposit, and read the cancellation terms: rooms in the path of totality historically spike around three weeks out, and hotels do sometimes cancel and re-list once they realise which week it is.</p>
       </div>
       <div class="tl-item">
-        <h4>≈ 3 August 2026 — London ⇄ Tunis flight opens</h4>
-        <p>British Airways releases bookings exactly 355 days before departure — a fixed rule, not a guideline. For a 24 July 2027 outbound, that's early August 2026: about three weeks from now. Tunisair also flies the route on a similar full-service timeline.</p>
+        <h4>From ~Aug 2026 — London → Tunis flight</h4>
+        <p>Note the correction: <b>British Airways does not fly this route itself</b> — its Tunis fares are Tunisair codeshares with a layover, so the 355-day rule does not apply here. The direct operators are <b>Tunisair</b> from Heathrow and <b>Nouvelair</b> from Gatwick, both of which typically load schedules around eleven months out. Start checking from August 2026 and book a one-way; the return is via Paris.</p>
       </div>
       <div class="tl-item">
         <h4>By late Sept/early Oct 2026 at the latest — Sfax → Paris flight</h4>
-        <p>Checked directly with <a href="https://www.transavia.com/help/en-uk/search-and-book/book-flight/how-long-booking-in-advance" target="_blank" rel="noopener">Transavia's own booking policy</a>: summer-season tickets (April–October) go on sale "by the end of September or beginning of October at the latest" the year before — so summer 2027 opens no later than around October 2026. That's a firm upper bound, not the likely date: the wider group has been releasing some routes far earlier this cycle, so it's worth checking every couple of weeks from now. This is the single most oversubscribed booking of the trip — book the day it opens.</p>
+        <p>Checked directly with <a href="https://www.transavia.com/help/en-uk/search-and-book/book-flight/how-long-booking-in-advance" target="_blank" rel="noopener">Transavia's own booking policy</a>: summer-season tickets (April–October) go on sale "by the end of September or beginning of October at the latest" the year before — so summer 2027 opens no later than around October 2026. That's a firm upper bound, not the likely date: the wider group has been releasing some routes far earlier this cycle, so it's worth checking every couple of weeks from now. This is the single most oversubscribed booking of the trip — book the day it opens. For scale: the same flight prices at £281–375 for two off-peak and seven months out, but £762–1,096 in the August peak three weeks out. Every week you delay costs real money on this one leg.</p>
       </div>
       <div class="tl-item">
         <h4>Early 2027 — the route decision &amp; remaining hotels</h4>
@@ -792,6 +1303,10 @@ footer b { color: #f5e9c8; font-weight: 600; }
       <div class="body">Shoulders and knees covered in medinas and religious sites; Zitouna and Kairouan's Great Mosque admit non-Muslims to courtyards only, mornings. Fridays run to a different rhythm — plan mosque courtyards for other days where possible.</div>
     </details>
     <details>
+      <summary>Entry fees — they have changed</summary>
+      <div class="body">Tunisia rewrote its museum and site tariffs by decree on 1 April 2026, reclassifying everything into five bands, with a second increase landing in January 2027. By the time of this trip expect roughly: Bardo 45 dinar, Carthage / El Jem / Kairouan 30 dinar each, regional museums such as Sousse 10 dinar, and mosque courtyards around 5 dinar. A combined Bardo–Carthage ticket runs 70 dinar and is worth it if you do both. Guidebooks and blog posts still quoting 8–13 dinar predate the decree — budget roughly triple the old figures, and carry cash for ticket desks.</div>
+    </details>
+    <details>
       <summary>Money &amp; language</summary>
       <div class="body">The dinar is a closed currency — exchange on arrival, keep receipts, spend down before leaving. Cards work in Tunis, Sousse and bigger hotels; carry cash everywhere else, especially Kairouan, Sfax's medina and Kerkennah. French is the second language everywhere; English-speaking guides are readily bookable (Mdinti, Bardo, Didon Tours all confirmed) but confirm English at every booking rather than assuming.</div>
     </details>
@@ -812,30 +1327,63 @@ footer b { color: #f5e9c8; font-weight: 600; }
 </footer>
 
 <script type="module">
-const options = document.querySelectorAll('.option');
-const legDesc = document.getElementById('legDesc');
-const legCost = document.getElementById('legCost');
-const grandTotal = document.getElementById('grandTotal');
-
-// Base totals excluding the leg: low £3,230 / high £4,380
-const BASE_LOW = 3230;
-const BASE_HIGH = 4380;
+const FLIGHTS = 910;
+const PARIS = 295;
+const TUNISIA_BASE = 1629; // everything except the Tunis → Sousse leg
+const CONTINGENCY = 0.15;
+const DAYS = 12;
 
 const legData = {
-  public:    { desc: 'Rail & road (Option A)',          low: 60,  high: 100 },
-  selfdrive: { desc: 'Self-drive hire car (Option B)',  low: 250, high: 350 },
-  driver:    { desc: 'Private driver-guide (Option C)', low: 300, high: 500 }
+  public: {
+    cost: 40,
+    desc: 'Louages via Kairouan (Option A)',
+    body: 'Louage fares are fixed and tiny: Tunis–Kairouan runs about 13 dinar a head and Kairouan–Sousse under 5, so the transport itself is roughly £10 for two. The rest is station taxis, luggage and a half-day guide at the Great Mosque.'
+  },
+  selfdrive: {
+    cost: 160,
+    desc: 'Self-drive hire car (Option B)',
+    body: 'Two days of a small hire car at roughly £35–50 a day, plus fuel, the one-way drop fee and an excess waiver. Cheaper than a driver, but you spend the northwest concentrating on unfamiliar roads rather than on Dougga.'
+  },
+  driver: {
+    cost: 300,
+    desc: 'Private driver-guide (Option C)',
+    body: 'Private day rates for a car with a licensed guide run about 350–700 dinar a day; two days lands near £300 once tips and the guide’s own entries are counted. The most restful and by far the best taught — and the option most worth booking early, since guides get block-booked for eclipse week.'
+  }
 };
 
-function fmt(n) {
-  return '£' + n.toLocaleString('en-GB');
-}
+const fmt = (n) => '\u00a3' + Math.round(n).toLocaleString('en-GB');
+
+const options = document.querySelectorAll('.option');
+const el = (id) => document.getElementById(id);
 
 function update(value) {
-  const d = legData[value];
-  legDesc.textContent = d.desc;
-  legCost.textContent = fmt(d.low) + '–' + fmt(d.high);
-  grandTotal.textContent = fmt(BASE_LOW + d.low) + '–' + fmt(BASE_HIGH + d.high);
+  const leg = legData[value];
+  const tunisia = TUNISIA_BASE + leg.cost;
+  const subtotal = FLIGHTS + tunisia + PARIS;
+  const contingency = subtotal * CONTINGENCY;
+  const total = subtotal + contingency;
+
+  el('legDesc').textContent = leg.desc;
+  el('legCost').textContent = fmt(leg.cost);
+  el('legBody').textContent = leg.body;
+
+  el('ovFlights').textContent = fmt(FLIGHTS);
+  el('ovTunisia').textContent = fmt(tunisia);
+  el('ovParis').textContent = fmt(PARIS);
+  el('sumFlights').textContent = fmt(FLIGHTS);
+  el('sumTunisia').textContent = fmt(tunisia);
+  el('sumParis').textContent = fmt(PARIS);
+
+  el('subTotal').textContent = fmt(subtotal);
+  el('contingency').textContent = fmt(contingency);
+  el('grandTotal').textContent = fmt(total);
+  el('perPerson').textContent = fmt(total / 2);
+  el('perDay').textContent = fmt(total / DAYS);
+
+  const widest = Math.max(FLIGHTS, tunisia, PARIS);
+  el('barFlights').style.width = (FLIGHTS / widest * 100) + '%';
+  el('barTunisia').style.width = (tunisia / widest * 100) + '%';
+  el('barParis').style.width = (PARIS / widest * 100) + '%';
 }
 
 for (const opt of options) {
@@ -843,7 +1391,7 @@ for (const opt of options) {
   input.addEventListener('change', () => {
     for (const o of options) o.classList.remove('selected');
     opt.classList.add('selected');
-    update(input.value);
+    update(opt.dataset.leg);
   });
 }
 
